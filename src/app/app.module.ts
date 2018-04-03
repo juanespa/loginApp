@@ -20,6 +20,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // importar envirement
 import { environment } from './../environments/environment';
 
+// import del guard
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -39,7 +41,7 @@ import { environment } from './../environments/environment';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig) // para realizar la conexion a firebasep
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
