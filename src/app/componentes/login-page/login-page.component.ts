@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../servicios/auth.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-login-page',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  public email: string;
+  public password: string;
+  constructor(public auth: AuthService, public router: Router) { }
 
   ngOnInit() {
+  }
+
+  onSubmitLogin() {
+    this.auth.loginEmail(this.email, this.password)
+    .then((res) => {
+      this.router.navigate(['/privado']);
+    }).catch((err) => {
+      console.log(err);
+      this.router.navigate(['/login']);
+    });
   }
 
 }
