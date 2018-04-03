@@ -38,4 +38,10 @@ export class AuthService {
     return this.afAuth.auth.signOut();
   }
 
+  // login con google
+
+  loginGoogle() {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
+  }
+
 }
