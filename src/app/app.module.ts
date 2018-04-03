@@ -1,5 +1,7 @@
+import { AuthService } from './servicios/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -10,6 +12,7 @@ import { RegisterPageComponent } from './componentes/register-page/register-page
 import { LoginPageComponent } from './componentes/login-page/login-page.component';
 import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
 import { NotFounPageComponent } from './componentes/not-foun-page/not-foun-page.component';
+
 
 
 @NgModule({
@@ -26,7 +29,7 @@ import { NotFounPageComponent } from './componentes/not-foun-page/not-foun-page.
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
