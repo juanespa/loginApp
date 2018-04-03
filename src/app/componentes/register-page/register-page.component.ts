@@ -3,6 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './../../servicios/auth.service';
 import { Component, OnInit } from '@angular/core';
 
+// importar dependencia flash angular
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 
 @Component({
   selector: 'app-register-page',
@@ -14,7 +17,11 @@ export class RegisterPageComponent implements OnInit {
   public email: string;
   public password: string;
 
-  constructor(public authService: AuthService, public router: Router) { }
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public flashmessages: FlashMessagesService
+  ) { }
 
   ngOnInit() {
   }
@@ -22,8 +29,12 @@ export class RegisterPageComponent implements OnInit {
   onSubmitAddUser() {
     this.authService.registerUser(this.email, this.password)
     .then( (res) => {
+      this.flashmessages.show('Usuario creado correctamente',
+       {cssClass: 'alert-success', timeout: 4000});
       this.router.navigate(['/privado']);
     }).catch((err) => {
+      this.flashmessages.show(err.message,
+       {cssClass: 'alert-danger', timeout: 4000});
       console.log(err);
     });
   }

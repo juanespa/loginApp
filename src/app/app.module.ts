@@ -23,6 +23,11 @@ import { environment } from './../environments/environment';
 // import del guard
 import { AuthGuard } from './guards/auth.guard';
 
+// importacion de flashes angular
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FlashMessagesService } from 'angular2-flash-messages';
+
+
 
 @NgModule({
   declarations: [
@@ -39,9 +44,10 @@ import { AuthGuard } from './guards/auth.guard';
     AppRoutingModule,
     FormsModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig) // para realizar la conexion a firebasep
+    AngularFireModule.initializeApp(environment.firebaseConfig), // para realizar la conexion a firebasep,
+    FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
